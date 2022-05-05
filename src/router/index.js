@@ -6,7 +6,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const publicRoutes = [
   {
     path: '/',
-    component: () => import('@/views/login/index')
+    component: () => import('@/layout/index')
   }
 ]
 
