@@ -5,6 +5,7 @@ import { TOKEN } from '@/constant'
 // 增加解构removeAllItem
 // 增加 导入路由
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   namespaced: true,
@@ -14,7 +15,6 @@ export default {
   }),
   mutations: {
     // 增加
-
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo
     },
@@ -40,6 +40,7 @@ export default {
           password: md5(password)
         })
           .then((data) => {
+            setTimeStamp()
             // resolve(data)
             // console.log('-------------')
             // console.log(data)
