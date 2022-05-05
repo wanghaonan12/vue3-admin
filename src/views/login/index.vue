@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -9,20 +14,37 @@
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" type="text" v-model="loginForm.username" />
+        <el-input
+          placeholder="username"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" v-model="loginForm.password" :type="passwordType" />
+        <el-input
+          placeholder="password"
+          name="password"
+          v-model="loginForm.password"
+          :type="passwordType"
+        />
         <span class="show-pwd">
-          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'" @click="onChangePwdType" />
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            @click="onChangePwdType"
+          />
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px" :loading="loading" @click="handleLogin"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -79,6 +101,8 @@ const router = useRouter()
 const handleLogin = () => {
   loginFormRef.value.validate((valid) => {
     if (!valid) return
+    console.log(loginForm.value)
+    console.log('*******************')
     console.log(loginForm.value)
     loading.value = true
     store
