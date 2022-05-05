@@ -23,6 +23,16 @@ service.interceptors.request.use(
     return config // 必须返回配置
   },
   error => {
+    // 处理 token 超时问题
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
+      // token超时
+      store.dispatch('user/logout')
+    }
+    ElMessage.error(error.message) // 提示错误信息
     return Promise.reject(error)
   }
 )
