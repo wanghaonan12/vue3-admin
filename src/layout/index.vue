@@ -38,6 +38,7 @@ import AppMain from './components/AppMain'
   top: 0;
   right: 0;
   z-index: 9;
+  transition: width #{$sideBarDuration};
   width: calc(100% - #{$sideBarWidth});
 }
 
