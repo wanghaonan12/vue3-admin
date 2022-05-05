@@ -1,6 +1,6 @@
 import { login } from '@/api/sys'
 import md5 from 'md5'
-import { setItem, getItem } from '@/utils/storage'
+import { setItem, getItem } from '../../../utils/storage'
 import { TOKEN } from '@/constant'
 export default {
   namespaced: true,
