@@ -10,7 +10,7 @@ module.exports = {
     node: true
   },
   // ESLint 中基础配置需要继承的配置
-  extends: ["plugin:vue/vue3-essential", "@vue/standard"],
+  extends: ['plugin:vue/vue3-essential', '@vue/standard'],
   // 解析器
   parserOptions: {
     parser: '@babel/eslint-parser'
@@ -23,8 +23,8 @@ module.exports = {
    * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
    */
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'space-before-function-paren': 'off'
   }
-};
+}
