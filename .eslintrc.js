@@ -28,6 +28,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     'vue/multi-word-component-names': 'off',
     'eslint-disable-next-line': 'off',
-    'no-undef': 'off'
+    'no-undef': 'off',
+    'option':'off'
   }
 }
