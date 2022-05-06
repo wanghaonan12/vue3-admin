@@ -30,6 +30,7 @@ module.exports = {
     'eslint-disable-next-line': 'off',
     'no-undef': 'off',
     'option': 'off',
-    'no-const-assign':'off'
+    'no-const-assign': 'off',
+    'no-unused-vars':'off'
   }
 }
