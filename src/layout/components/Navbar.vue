@@ -5,6 +5,7 @@
     <div class="right-menu">
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <lang-select class="right-menu-item hover-effect" />
+      <screenfull class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -25,8 +26,8 @@
               <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              {{ $t('msg.navBar.logout') }}          </el-dropdown-item>
-
+              {{ $t('msg.navBar.logout') }}
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -35,6 +36,7 @@
 </template>
 
 <script setup>
+import Screenfull from '@/components/Screenfull'
 import ThemePicker from '@/components/ThemeSelect/index'
 import LangSelect from '@/components/LangSelect'
 import Hamburger from '@/components/Hamburger'
@@ -96,18 +98,17 @@ const logout = () => {
     float: right;
     padding-right: 16px;
 
-::v-deep(.right-menu-item) {
-        display: inline-block;
-        padding: 0 18px 0 0;
-        font-size: 24px;
-        color: #5a5e66;
-        vertical-align: text-bottom;
-        margin-left: 8px;
-        &.hover-effect {
-          cursor: pointer;
-        }
-
+    ::v-deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+      margin-left: 8px;
+      &.hover-effect {
+        cursor: pointer;
       }
+    }
     ::v-deep(avatar-container) {
       cursor: pointer;
       .avatar-wrapper {
