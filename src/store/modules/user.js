@@ -1,6 +1,6 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import { setItem, getItem, removeAllItem } from '../../../utils/storage'
+import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 // 增加解构removeAllItem
 // 增加 导入路由

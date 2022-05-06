@@ -1,7 +1,7 @@
 // import variables from '@/styles/variables.module.scss'
 import { MAIN_COLOR } from '@/constant'
-import { getItem } from '../../utils/storage'
-import { generateColors } from '../../utils/theme'
+import { getItem } from '@/utils/storage'
+import { generateColors } from '@/utils/theme'
 const getters = {
   token: (state) => state.user.token,
   userInfo: (state) => state.user.userInfo,

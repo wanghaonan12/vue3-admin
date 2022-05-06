@@ -1,5 +1,5 @@
 import { TIME_STAMP, TOKEN_TIMEOUT_VALUE } from '@/constant'
-import { setItem, getItem } from '../../utils/storage'
+import { setItem, getItem } from '@/utils/storage'
 /**
  * 获取时间戳
  */

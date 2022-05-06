@@ -21,7 +21,7 @@
 import SidebarItem from './SidebarItem.vue'
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { filterRouters, generateMenus } from '../../../utils/route'
+import { filterRouters, generateMenus } from '@/utils/route'
 
 const router = useRouter()
 const routes = computed(() => {

@@ -4,7 +4,7 @@
   <span>{{ generateTitle(title) }}</span>
 </template>
 <script setup>
-import { generateTitle } from '../../../../utils/i18n'
+import { generateTitle } from '@/utils/i18n'
 defineProps({
   title: {
     type: String,

@@ -21,7 +21,7 @@
 <script setup>
 import { defineEmits, ref } from 'vue'
 import { useStore } from 'vuex'
-import { generateNewStyle, writeNewStyle } from '../../../../utils/theme'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 const store = useStore()
 // 默认色值
 const mColor = ref(store.getters.mainColor)

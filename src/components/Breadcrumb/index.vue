@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { generateTitle } from '../../../utils/i18n'
+import { generateTitle } from '@/utils/i18n'
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
