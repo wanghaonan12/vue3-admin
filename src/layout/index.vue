@@ -4,7 +4,11 @@
     :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
   >
     <!-- 左侧 menu -->
-    <sidebar class="sidebar-container" />
+    <sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
+    />
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
