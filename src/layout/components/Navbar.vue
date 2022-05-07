@@ -3,10 +3,11 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
-       <header-search class="right-menu-item hover-effect" />
+      <header-search class="right-menu-item hover-effect" />
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <lang-select class="right-menu-item hover-effect" />
       <screenfull class="right-menu-item hover-effect" />
+      <guide class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -37,6 +38,7 @@
 </template>
 
 <script setup>
+import Guide from '@/components/Guide'
 import HeaderSearch from '@/components/HeaderSearch'
 import Screenfull from '@/components/Screenfull'
 import ThemePicker from '@/components/ThemeSelect/index'
