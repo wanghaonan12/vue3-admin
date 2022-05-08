@@ -36,7 +36,10 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')">
+        <el-table-column :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
         </el-table-column>
         <el-table-column
           :label="$t('msg.excel.action')"
@@ -76,7 +79,15 @@
 import { ref } from 'vue'
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+/**
+ * excel 导入点击事件
+ */
+const onImportExcelClick = () => {
+  router.push('/user/import')
+}
 // 数据相关
 const tableData = ref([])
 const total = ref(0)
