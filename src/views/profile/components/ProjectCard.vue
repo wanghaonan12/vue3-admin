@@ -43,12 +43,12 @@
         </div>
       </div>
     </div>
+
     <!-- 项目功能区域 -->
     <div class="project-bio-section">
       <div class="project-bio-section-header">
-        <svg-icon icon="reward" /><span>{{
-          $t('msg.profile.projectFunction')
-        }}</span>
+        <svg-icon icon="reward" />
+        <span>{{ $t('msg.profile.projectFunction') }}</span>
       </div>
       <div class="project-bio-section-body">
         <div class="progress-item" v-for="item in features" :key="item.id">
@@ -62,7 +62,6 @@
 
 <script setup>
 import MyAvatar from '@/components/MyAvatar/index.vue'
-
 defineProps({
   features: {
     type: Array,
@@ -77,7 +76,19 @@ defineProps({
     font-size: 14px;
     color: #777;
   }
-
+  .user-profile {
+    text-align: center;
+    .user-name {
+      font-weight: bold;
+    }
+    .box-center {
+      padding-top: 10px;
+    }
+    .user-role {
+      padding-top: 10px;
+      font-weight: 400;
+    }
+  }
   .project-bio {
     margin-top: 20px;
     color: #606266;
@@ -101,21 +112,6 @@ defineProps({
           }
         }
       }
-    }
-  }
-  .user-profile {
-    text-align: center;
-    .user-name {
-      font-weight: bold;
-    }
-
-    .box-center {
-      padding-top: 10px;
-    }
-
-    .user-role {
-      padding-top: 10px;
-      font-weight: 400;
     }
   }
 }

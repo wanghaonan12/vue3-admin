@@ -1,12 +1,7 @@
 <template>
   <div class="author-container">
     <div class="header">
-      <my-avatar
-        image="https://wang-rich.oss-cn-hangzhou.aliyuncs.com/md/202204071504617.png"
-        height="60px"
-        width="60px"
-        :hoverable="false"
-      >
+      <my-avatar image="https://wang-rich.oss-cn-hangzhou.aliyuncs.com/md/202204071504617.png" height="60px" width="60px" :hoverable="false">
         {{ $t('msg.profile.name') }}
       </my-avatar>
       <div class="header-desc">
@@ -34,7 +29,6 @@ import {} from 'vue'
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-
       span {
         font-size: 14px;
       }

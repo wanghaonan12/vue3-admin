@@ -31,13 +31,13 @@ import Author from './components/Author.vue'
 import { ref } from 'vue'
 import { getFeature } from '@/api/user'
 import { watchSwitchLang } from '@/utils/i18n'
-
 defineProps({
   features: {
     type: Array,
     required: true
   }
 })
+const activeName = ref('feature')
 const featureData = ref([])
 const getFeatureData = async () => {
   featureData.value = await getFeature()
@@ -45,8 +45,6 @@ const getFeatureData = async () => {
 getFeatureData()
 // 监听语言切换
 watchSwitchLang(getFeatureData)
-
-const activeName = ref('feature')
 </script>
 
 <style lang="scss" scoped>
