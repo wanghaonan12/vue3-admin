@@ -1,12 +1,15 @@
 {
   "name": "vue3-admin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "conventional-changelog": "conventional-changelog -p angular -i changelog/CHANGELOG.md -s",
+    "release": "standard-version"
   },
   "dependencies": {
     "@toast-ui/editor": "^3.0.2",
@@ -43,6 +46,8 @@
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
@@ -52,12 +57,13 @@
     "husky": "^7.0.4",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
+    "standard-version": "^9.3.2",
     "svg-sprite-loader": "^6.0.11",
     "vue-cli-plugin-element-plus": "~0.0.13"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-customizable"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "lint-staged": {
