@@ -11,7 +11,7 @@
       </el-input>
       <el-tabs v-model="activeName">
         <el-tab-pane :label="$t('msg.article.markdown')" name="markdown">
-          <markdown></markdown>
+          <markdown @onSuccess="onSuccess"></markdown>
         </el-tab-pane>
         <el-tab-pane :label="$t('msg.article.richText')" name="editor">
           <editor></editor>
@@ -25,6 +25,11 @@
 import Editor from './components/Editor.vue'
 import Markdown from './components/Markdown.vue'
 import { ref } from 'vue'
+
+// 创建成功
+const onSuccess = () => {
+  title.value = ''
+}
 
 const activeName = ref('markdown')
 const title = ref('')
