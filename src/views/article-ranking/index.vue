@@ -51,12 +51,20 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
 import { ref, onActivated, onMounted } from 'vue'
 import { tableRef, initSortable } from './sortable'
 import { useI18n } from 'vue-i18n'
+/**
+ * 查看按钮点击事件
+ */
+const router = useRouter()
+const onShowClick = (row) => {
+  router.push(`/article/${row._id}`)
+}
 // 表格拖拽相关
 onMounted(() => {
   initSortable(tableData, getListData)
