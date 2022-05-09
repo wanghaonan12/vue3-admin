@@ -24,54 +24,12 @@
 </template>
 
 <script setup>
+import { userRoles, updateRole } from '@/api/user-manage'
+import { useI18n } from 'vue-i18n'
 import { roleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
-import { ref, defineProps, defineEmits } from 'vue'
-// 所有角色
-const allRoleList = ref([])
-// 获取所有角色数据的方法
-const getListData = async () => {
-  allRoleList.value = await roleList()
-}
-getListData()
-watchSwitchLang(getListData)
+import { ref, watch } from 'vue'
 
-const emits = defineEmits(['update:modelValue', 'updateRole'])
-
-/**
-  确定按钮点击事件
- */
-const i18n = useI18n()
-const onConfirm = async () => {
-  // 处理数据结构
-  const roles = userRoleTitleList.value.map((title) => {
-    return allRoleList.value.find((role) => role.title === title)
-  })
-
-  await updateRole(props.userId, roles)
-
-  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
-  // 角色更新成功
-  emits('updateRole')
-  closed()
-}
-
-/**
- * 关闭
- */
-const closed = () => {
-  emits('update:modelValue', false)
-}
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    required: true
-  },
-  userId: {
-    type: String,
-    required: true
-  }
-})
 // 当前用户角色
 const userRoleTitleList = ref([])
 // 获取当前用户角色
@@ -85,6 +43,55 @@ watch(
     if (val) getUserRoles()
   }
 )
+
+// 所有角色
+const allRoleList = ref([])
+// 获取所有角色数据的方法
+const getListData = async () => {
+  allRoleList.value = await roleList()
+}
+getListData()
+watchSwitchLang(getListData)
+
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true
+  },
+  userId: {
+    type: String,
+    required: true
+  }
+})
+const emits = defineEmits(['update:modelValue'])
+
+/**
+ * 关闭
+ */
+const closed = () => {
+  emits('update:modelValue', false)
+}
+/**
+  确定按钮点击事件
+ */
+const i18n = useI18n()
+const onConfirm = async () => {
+  // 处理数据结构
+  const roles = userRoleTitleList.value.map((title) => {
+    return allRoleList.value.find((role) => role.title === title)
+  })
+
+  // 弹出数据观察
+  alert(props.userId)
+  alert(JSON.stringify(roles))
+  const res = await updateRole(props.userId, roles)
+  alert(JSON.stringify(res))
+
+  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
+  closed()
+  // 角色更新成功
+  emits('updateRole')
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,9 @@
 <template>
   <div class="user-manage-container">
+    <roles-dialog
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+    ></roles-dialog>
     <el-card class="header">
       <div>
         <el-button type="primary" @click="onImportExcelClick">
@@ -52,9 +56,9 @@
             <el-button type="primary" size="mini" @click="onShowClick(row._id)">
               {{ $t('msg.excel.show') }}
             </el-button>
-            <el-button type="info" size="mini">{{
-              $t('msg.excel.showRole')
-            }}</el-button>
+            <el-button type="info" size="mini" @click="onShowRoleClick(row)">
+              {{ $t('msg.excel.showRole') }}
+            </el-button>
             <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
               $t('msg.excel.remove')
             }}</el-button>
@@ -80,12 +84,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import RolesDialog from './components/roles.vue'
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import ExportToExcel from './components/Export2Excel.vue'
+import { ref, watch } from 'vue'
+
+/**
+ * 查看角色的点击事件
+ */
+const roleDialogVisible = ref(false)
+const selectUserId = ref('')
+const onShowRoleClick = (row) => {
+  roleDialogVisible.value = true
+  selectUserId.value = row._id
+}
+// 保证每次打开重新获取用户角色数据
+watch(roleDialogVisible, (val) => {
+  if (!val) selectUserId.value = ''
+})
 // 数据相关
 const tableData = ref([])
 const total = ref(0)
@@ -143,6 +162,26 @@ const onRemoveClick = (row) => {
     // 重新渲染数据
     getListData()
   })
+}
+/**
+  确定按钮点击事件
+ */
+const onConfirm = async () => {
+  // 处理数据结构
+  const roles = userRoleTitleList.value.map((title) => {
+    return allRoleList.value.find((role) => role.title === title)
+  })
+
+  // 弹出数据观察
+  alert(props.userId)
+  alert(JSON.stringify(roles))
+  const res = await updateRole(props.userId, roles)
+  alert(JSON.stringify(res))
+
+  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
+  closed()
+  // 角色更新成功
+  emits('updateRole')
 }
 /**
  * excel 导出点击事件

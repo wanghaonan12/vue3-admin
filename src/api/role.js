@@ -16,3 +16,25 @@ export const rolePermission = (roleId) => {
     url: `/role/permission/${roleId}`
   })
 }
+/**
+ * 为角色修改权限
+ */
+export const distributePermission = (data) => {
+  return request({
+    url: '/role/distribute-permission',
+    method: 'POST',
+    data
+  })
+}
+/**
+ * 为用户分配角色
+ */
+export const updateRole = (id, roles) => {
+  return request({
+    url: `/user-manage/update-role/${id}`,
+    method: 'POST',
+    data: {
+      roles
+    }
+  })
+}
