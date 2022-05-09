@@ -2,9 +2,17 @@
   <div class="article-detail-container">
     <h2 class="title">{{ detail.title }}</h2>
     <div class="header">
-      <span class="author">{{ $t('msg.article.author') }}：{{ detail.author }}</span>
-      <span class="time">{{ $t('msg.article.publicDate') }}：{{ $filters.relativeTime(detail.publicDate) }}</span>
-      <el-button type="text" class="edit" @click="onEditClick">{{ $t('msg.article.edit') }}</el-button>
+      <span class="author"
+        >{{ $t('msg.article.author') }}：{{ detail.author }}</span
+      >
+      <span class="time"
+        >{{ $t('msg.article.publicDate') }}：{{
+          $filters.relativeTime(detail.publicDate)
+        }}</span
+      >
+      <el-button type="text" class="edit" @click="onEditClick">{{
+        $t('msg.article.edit')
+      }}</el-button>
     </div>
     <div class="content" v-html="detail.content"></div>
   </div>
@@ -12,15 +20,19 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { articleDetail } from '@/api/article'
-
 // 获取数据
 const route = useRoute()
 const articleId = route.params.id
 const detail = ref({})
 const getArticleDetail = async () => {
   detail.value = await articleDetail(articleId)
+}
+// 编辑
+const router = useRouter()
+const onEditClick = () => {
+  router.push(`/article/editor/${articleId}`)
 }
 getArticleDetail()
 </script>
