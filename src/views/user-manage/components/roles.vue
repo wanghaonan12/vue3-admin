@@ -28,6 +28,7 @@ import { userRoles, updateRole } from '@/api/user-manage'
 import { useI18n } from 'vue-i18n'
 import { roleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
+import { ElMessage } from 'element-plus'
 import { ref, watch } from 'vue'
 
 // 当前用户角色
