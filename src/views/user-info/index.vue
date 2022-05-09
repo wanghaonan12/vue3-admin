@@ -6,10 +6,9 @@
       </el-button>
     </el-card>
     <el-card>
-      <div class="user-info-box" id="userInfoBox">
+      <div id="userInfoBox" class="user-info-box">
         <!-- 标题 -->
         <h2 class="title">{{ $t('msg.userInfo.title') }}</h2>
-
         <div class="header">
           <!-- 头部渲染表格 -->
           <el-descriptions :column="2" border>
@@ -83,24 +82,19 @@
     </el-card>
   </div>
 </template>
+
 <script setup>
 import { userDetail } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { defineProps, ref } from 'vue'
+
 const props = defineProps({
   id: {
     type: String,
     required: true
   }
 })
-// 数据相关
-const detailData = ref({})
-const getUserDetail = async () => {
-  detailData.value = await userDetail(props.id)
-}
-getUserDetail()
-// 语言切换
-watchSwitchLang(getUserDetail)
+
 // 打印相关
 const printLoading = ref(false)
 const printObj = {
@@ -117,7 +111,16 @@ const printObj = {
     printLoading.value = false
   }
 }
+// 数据相关
+const detailData = ref({})
+const getUserDetail = async () => {
+  detailData.value = await userDetail(props.id)
+}
+getUserDetail()
+// 语言切换
+watchSwitchLang(getUserDetail)
 </script>
+
 <style lang="scss" scoped>
 .print-box {
   margin-bottom: 20px;

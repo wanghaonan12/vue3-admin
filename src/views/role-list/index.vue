@@ -18,18 +18,21 @@
             type="primary"
             size="mini"
             @click="onDistributePermissionClick(row)"
+            v-permission="['distributePermission']"
           >
             {{ $t('msg.role.assignPermissions') }}
           </el-button>
         </el-table-column>
       </el-table>
     </el-card>
+
     <distribute-permission
       v-model="distributePermissionVisible"
       :roleId="selectRoleId"
     ></distribute-permission>
   </div>
 </template>
+
 <script setup>
 import { roleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'

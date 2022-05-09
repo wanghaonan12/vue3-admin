@@ -1,14 +1,15 @@
 import request from '@/utils/request'
 
 /**
-* 获取用户列表数据
-*/
-export const getUserManageList = data => {
+ * 获取用户列表数据
+ */
+export const getUserManageList = (data) => {
   return request({
     url: '/user-manage/list',
     params: data
   })
 }
+
 /**
  * 批量导入
  */
@@ -19,6 +20,7 @@ export const userBatchImport = (data) => {
     data
   })
 }
+
 /**
  * 删除指定数据
  */
@@ -27,6 +29,7 @@ export const deleteUser = (id) => {
     url: `/user-manage/detele/${id}`
   })
 }
+
 /**
  * 获取所有用户列表数据
  */
@@ -35,6 +38,7 @@ export const getUserManageAllList = () => {
     url: '/user-manage/all-list'
   })
 }
+
 /**
  * 获取用户详情
  */
@@ -43,6 +47,7 @@ export const userDetail = (id) => {
     url: `/user-manage/detail/${id}`
   })
 }
+
 /**
  * 获取指定用户角色
  */
@@ -51,8 +56,9 @@ export const userRoles = (id) => {
     url: `/user-manage/role/${id}`
   })
 }
+
 /**
- * 分用户分配角色
+ * 为用户分配角色
  */
 export const updateRole = (id, roles) => {
   return request({

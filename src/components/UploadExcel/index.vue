@@ -138,23 +138,9 @@ const readerData = (rawFile) => {
 /**
  * 根据导入内容，生成数据
  */
-/**
- * 筛选数据
- */
-const generateData = (results) => {
+const generateData = (excelData) => {
   props.onSuccess && props.onSuccess(excelData)
-  Object.keys(item).forEach((key) => {
-    if (USER_RELATIONS[key] === 'openTime') {
-      userInfo[USER_RELATIONS[key]] = formatDate(item[key])
-      return
-    }
-    userInfo[USER_RELATIONS[key]] = item[key]
-  })
 }
-
-// const generateData = (excelData) => {
-//   props.onSuccess && props.onSuccess(excelData)
-// }
 </script>
 
 <style lang="scss" scoped>

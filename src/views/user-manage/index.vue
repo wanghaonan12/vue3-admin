@@ -1,12 +1,12 @@
 <template>
   <div class="user-manage-container">
-    <roles-dialog
-      v-model="roleDialogVisible"
-      :userId="selectUserId"
-    ></roles-dialog>
     <el-card class="header">
       <div>
-        <el-button type="primary" @click="onImportExcelClick">
+        <el-button
+          type="primary"
+          v-permission="['distributePermission']"
+          @click="onImportExcelClick"
+        >
           {{ $t('msg.excel.importExcel') }}</el-button
         >
         <el-button type="success" @click="onToExcelClick">
@@ -59,6 +59,7 @@
             <el-button type="info" size="mini" @click="onShowRoleClick(row)">
               {{ $t('msg.excel.showRole') }}
             </el-button>
+
             <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
               $t('msg.excel.remove')
             }}</el-button>
@@ -80,17 +81,23 @@
     </el-card>
 
     <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
+
+    <roles-dialog
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+      @updateRole="getListData"
+    ></roles-dialog>
   </div>
 </template>
 
 <script setup>
-import RolesDialog from './components/roles.vue'
+import { ref, watch } from 'vue'
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import ExportToExcel from './components/Export2Excel.vue'
-import { ref, watch } from 'vue'
+import RolesDialog from './components/RolesDialog.vue'
 
 /**
  * 查看角色的点击事件
@@ -122,6 +129,7 @@ const getListData = async () => {
 getListData()
 // 监听语言切换
 watchSwitchLang(getListData)
+
 // 分页相关
 /**
  * size 改变触发
@@ -130,6 +138,7 @@ const handleSizeChange = (currentSize) => {
   size.value = currentSize
   getListData()
 }
+
 /**
  * 页码改变触发
  */
@@ -137,6 +146,7 @@ const handleCurrentChange = (currentPage) => {
   page.value = currentPage
   getListData()
 }
+
 const router = useRouter()
 /**
  * excel 导入点击事件
@@ -144,6 +154,7 @@ const router = useRouter()
 const onImportExcelClick = () => {
   router.push('/user/import')
 }
+
 /**
  * 删除按钮点击事件
  */
@@ -163,26 +174,7 @@ const onRemoveClick = (row) => {
     getListData()
   })
 }
-/**
-  确定按钮点击事件
- */
-const onConfirm = async () => {
-  // 处理数据结构
-  const roles = userRoleTitleList.value.map((title) => {
-    return allRoleList.value.find((role) => role.title === title)
-  })
 
-  // 弹出数据观察
-  alert(props.userId)
-  alert(JSON.stringify(roles))
-  const res = await updateRole(props.userId, roles)
-  alert(JSON.stringify(res))
-
-  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
-  closed()
-  // 角色更新成功
-  emits('updateRole')
-}
 /**
  * excel 导出点击事件
  */
@@ -190,6 +182,7 @@ const exportToExcelVisible = ref(false)
 const onToExcelClick = () => {
   exportToExcelVisible.value = true
 }
+
 /**
  * 查看按钮点击事件
  */
@@ -209,9 +202,11 @@ const onShowClick = (id) => {
     height: 60px;
     border-radius: 50%;
   }
+
   ::v-deep(.el-tag) {
     margin-right: 6px;
   }
+
   .pagination {
     margin-top: 20px;
     text-align: center;

@@ -20,12 +20,8 @@
 
 <script setup>
 import { defineEmits, ref } from 'vue'
-import { useStore } from 'vuex'
 import { generateNewStyle, writeNewStyle } from '@/utils/theme'
-const store = useStore()
-// 默认色值
-const mColor = ref(store.getters.mainColor)
-
+import { useStore } from 'vuex'
 defineProps({
   modelValue: {
     type: Boolean,
@@ -51,7 +47,6 @@ const predefineColors = [
   'hsla(209, 100%, 56%, 0.73)',
   '#c7158577'
 ]
-// 默认色值
 
 /**
  * 关闭
@@ -59,12 +54,18 @@ const predefineColors = [
 const closed = () => {
   emits('update:modelValue', false)
 }
+
+const store = useStore()
+// 默认色值
+const mColor = ref(store.getters.mainColor)
+
 /**
  * 确定
  * 1. 修改主题色
  * 2. 保存最新的主题色
  * 3. 关闭 dialog
  */
+
 const comfirm = async () => {
   // 1.1 获取主题色
   const newStyleText = await generateNewStyle(mColor.value)

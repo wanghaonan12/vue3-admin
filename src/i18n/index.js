@@ -17,8 +17,6 @@ const messages = {
   }
 }
 
-// 创建 locale 语言变量
-
 // 初始化 i18n 实例
 const i18n = createI18n({
   // 使用 Composition API 模式，则需要将其设置为false
@@ -28,8 +26,13 @@ const i18n = createI18n({
   locale: getLanguage(),
   messages
 })
+
+/**
+ * 返回当前 lang
+ */
 function getLanguage() {
   return store && store.getters && store.getters.language
 }
+
 // 导出 i18n 实例
 export default i18n

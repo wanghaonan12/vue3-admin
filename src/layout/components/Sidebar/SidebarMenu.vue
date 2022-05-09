@@ -1,8 +1,8 @@
 <template>
   <!-- 一级 menu 菜单 -->
   <el-menu
-    :default-active="activeMenu"
     :collapse="!$store.getters.sidebarOpened"
+    :default-active="activeMenu"
     :background-color="$store.getters.cssVar.menuBg"
     :text-color="$store.getters.cssVar.menuText"
     :active-text-color="$store.getters.cssVar.menuActiveText"
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import SidebarItem from './SidebarItem.vue'
+import SidebarItem from './SidebarItem'
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route'
@@ -28,10 +28,11 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
+// console.log(JSON.stringify(routes.value))
+// 计算高亮menu的方法
 const route = useRoute()
 const activeMenu = computed(() => {
   const { path } = route
   return path
 })
-console.log(JSON.stringify(routes.value))
 </script>

@@ -30,6 +30,7 @@
     </el-card>
   </div>
 </template>
+
 <script setup>
 import { permissionList } from '@/api/permission'
 import { watchSwitchLang } from '@/utils/i18n'

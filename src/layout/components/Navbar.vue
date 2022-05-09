@@ -8,6 +8,7 @@
       <lang-select class="right-menu-item hover-effect" />
       <screenfull class="right-menu-item hover-effect" />
       <guide class="right-menu-item hover-effect" />
+
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -15,8 +16,7 @@
             shape="square"
             :size="40"
             :src="$store.getters.userInfo.avatar"
-          >
-          </el-avatar>
+          ></el-avatar>
           <i class="el-icon-s-tools"></i>
         </div>
         <template #dropdown>
@@ -39,18 +39,24 @@
 
 <script setup>
 import Guide from '@/components/Guide'
-import HeaderSearch from '@/components/HeaderSearch'
-import Screenfull from '@/components/Screenfull'
 import ThemePicker from '@/components/ThemeSelect/index'
 import LangSelect from '@/components/LangSelect'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
+import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 import { ref, watch } from 'vue'
-import { useStore } from 'vuex'
-
 import { useRoute } from 'vue-router'
-const route = useRoute()
+import { useStore } from 'vuex'
+import { resetRouter } from '@/router'
 
+const store = useStore()
+const logout = () => {
+  resetRouter()
+  store.dispatch('user/logout')
+}
+
+const route = useRoute()
 // 生成数组数据
 const breadcrumbData = ref([])
 const getBreadcrumbData = () => {
@@ -69,12 +75,8 @@ watch(
     immediate: true
   }
 )
-// 退出登录
-const store = useStore()
-const logout = () => {
-  store.dispatch('user/logout')
-}
 </script>
+
 <style lang="scss" scoped>
 .navbar {
   height: 50px;
@@ -82,38 +84,14 @@ const logout = () => {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  .breadcrumb-container {
-    float: left;
-  }
-  .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
-    cursor: pointer;
-    // hover 动画
-    transition: background 0.5s;
-    &:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-  }
+
   .right-menu {
     display: flex;
     align-items: center;
     float: right;
     padding-right: 16px;
 
-    ::v-deep(.right-menu-item) {
-      display: inline-block;
-      padding: 0 18px 0 0;
-      font-size: 24px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-      margin-left: 8px;
-      &.hover-effect {
-        cursor: pointer;
-      }
-    }
-    ::v-deep(avatar-container) {
+    ::v-deep(.avatar-container) {
       cursor: pointer;
       .avatar-wrapper {
         margin-top: 5px;
@@ -124,7 +102,25 @@ const logout = () => {
         }
       }
     }
+
+    ::v-deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+      margin-left: 8px;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
   }
+
+  .breadcrumb-container {
+    float: left;
+  }
+
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -136,9 +132,6 @@ const logout = () => {
     &:hover {
       background: rgba(0, 0, 0, 0.1);
     }
-  }
-  .breadcrumb-container {
-    float: left;
   }
 }
 </style>

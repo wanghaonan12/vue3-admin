@@ -3,6 +3,7 @@
   <svg-icon v-else :icon="icon"></svg-icon>
   <span>{{ generateTitle(title) }}</span>
 </template>
+
 <script setup>
 import { generateTitle } from '@/utils/i18n'
 defineProps({

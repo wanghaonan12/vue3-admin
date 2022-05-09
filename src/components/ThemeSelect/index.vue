@@ -7,7 +7,7 @@
   >
     <div>
       <el-tooltip :content="$t('msg.navBar.themeChange')">
-       <svg-icon id="guide-theme" icon="change-theme" />
+        <svg-icon id="guide-theme" icon="change-theme" />
       </el-tooltip>
     </div>
     <template #dropdown>
@@ -16,11 +16,10 @@
           {{ $t('msg.theme.themeColorChange') }}
         </el-dropdown-item>
       </el-dropdown-menu>
-
     </template>
   </el-dropdown>
   <!-- 展示弹出层 -->
-   <div>
+  <div>
     <select-color v-model="selectColorVisible"></select-color>
   </div>
 </template>
@@ -30,8 +29,9 @@ import SelectColor from './components/SelectColor.vue'
 import { ref } from 'vue'
 
 const selectColorVisible = ref(false)
-const handleSetTheme = command => {
+const handleSetTheme = (command) => {
   selectColorVisible.value = true
 }
 </script>
+
 <style lang="scss" scoped></style>

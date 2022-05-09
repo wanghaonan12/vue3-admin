@@ -1,6 +1,11 @@
 <template>
   <el-collapse v-model="activeName" accordion>
-    <el-collapse-item v-for="item in features" :key="item.id" :title="item.title" :name="item.id">
+    <el-collapse-item
+      v-for="item in features"
+      :key="item.id"
+      :title="item.title"
+      :name="item.id"
+    >
       <div v-html="item.content"></div>
     </el-collapse-item>
   </el-collapse>
@@ -21,6 +26,7 @@ defineProps({
 ::v-deep(.el-collapse-item__header) {
   font-weight: bold;
 }
+
 .el-collapse-item {
   ::v-deep(a) {
     color: #2d62f7;

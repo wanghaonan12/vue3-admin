@@ -5,7 +5,6 @@
     @close="closed"
   >
     内容
-
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="closed">{{ $t('msg.universal.cancel') }}</el-button>

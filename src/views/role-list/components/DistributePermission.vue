@@ -47,6 +47,7 @@ const onConfirm = async () => {
   ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
   closed()
 }
+
 const props = defineProps({
   modelValue: {
     type: Boolean,
